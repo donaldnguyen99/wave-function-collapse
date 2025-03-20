@@ -1,4 +1,6 @@
-from ..tiles import Tile
+import sys
+sys.path.append('..')
+from tiles import Tile
 import pygame
 import pytest
 
@@ -19,20 +21,20 @@ class TestTile:
         assert tile.image is None
         assert tile.image_rect is None
 
-    def test_tile_init_3_args(self):
-        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png')
+    def test_tile_init_5_args(self):
+        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png', 10, 10)
         assert tile.name == 'test'
         assert tile.edges == [1, 2, 3, 4]
         assert tile.image is not None
         assert tile.image_rect is not None
 
     def test_tile_rotate(self):
-        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png')
+        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png', 10, 10)
         tile.rotate(1)
         assert tile.edges == [2, 3, 4, 1]
 
     def test_tile_make_copy(self):
-        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png')
+        tile = Tile('test', [1, 2, 3, 4], 'tiles/T.png', 10, 10)
         tile2 = tile.make_copy()
         tile2.rotate(1)
         assert tile2.image is not tile.image

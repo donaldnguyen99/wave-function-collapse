@@ -37,7 +37,9 @@ class Game:
         self.screen = screen
         self.cell_height = self.screen.get_height() / self.GRID_HEIGHT
         self.cell_width = self.screen.get_width() / self.GRID_WIDTH
-        tile_system = tiles.TileSystem(self.cell_width, self.cell_height)
+        tile_system = tiles.TileSystem(
+            (self.cell_width // tiles.TileSetDefault.size) * tiles.TileSetDefault.size, 
+            (self.cell_height // tiles.TileSetDefault.size) * tiles.TileSetDefault.size)
         self.tiles = tile_system.tiles
         self.grid = [
             Cell(i, self.tiles) for i in range(self.GRID_WIDTH * self.GRID_HEIGHT)
